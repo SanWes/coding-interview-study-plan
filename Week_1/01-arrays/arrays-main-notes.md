@@ -134,22 +134,22 @@ int[] numbers = {1, 2, 3, 4};
 
 ### Things to Watch Out for in Array Interview Questions
 
-1. Ask About Duplicates
+1. **Ask About Duplicates**
    ➤ Always check if the array might have duplicate values.
    ➤ Ask: "Can there be duplicates?"
    ➤ Duplicates can change how you solve the problem — sometimes they make it easier, other times more complicated.
 
-2. Watch Your Indexes
+2. **Watch Your Indexes**
    ➤ When looping through an array, make sure you don’t go past the end of it.
    ➤ Accessing an index that doesn’t exist will cause errors.
 
-3. Be Careful with Slicing and Merging Arrays
+3. **Be Careful with Slicing and Merging Arrays**
    ➤ Cutting parts of an array (slicing) or combining arrays (concatenation) takes time — usually O(n).
    ➤ Instead of copying parts of the array, try using start and end pointers to mark the section you’re working with. This saves memory and time.
 
 ### Corner Cases to Watch For
 
-1. Empty Sequence
+1. **Empty Sequence**
    ➤ This means the array (or list) has no elements at all, like [].
 
    Why it matters:
@@ -160,7 +160,7 @@ int[] numbers = {1, 2, 3, 4};
 
    Always check: "What if the input is empty?"
 
-2. Sequence with 1 or 2 elements
+2. **Sequence with 1 or 2 elements**
    ➤ Small arrays like [5] or [3, 7].
 
    Why it matters:
@@ -174,7 +174,7 @@ int[] numbers = {1, 2, 3, 4};
    ✅ Interview tip: Always ask the interviewer:
    "Can the input be very small — like 1 or 2 elements?"
 
-3. Sequence with repeated elements
+3. **Sequence with repeated elements**
    ➤ Arrays like [4, 4, 4, 4].
 
    🔍 Why it matters:
@@ -186,7 +186,7 @@ int[] numbers = {1, 2, 3, 4};
    ✅ What to clarify:
    "Are repeated values allowed, and should they be treated as duplicates or separate?"
 
-4. Duplicated values in the sequence
+4. **Duplicated values in the sequence**
    ➤ Similar to above, but focused on some duplicates rather than all elements being the same — e.g., [1, 2, 3, 2, 4].
 
    🔍 Why it matters:

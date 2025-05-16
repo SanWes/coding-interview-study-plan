@@ -6,9 +6,29 @@ This file contains hands-on practice and explanations for key array problem-solv
 
 ## Sliding Window
 
+- Folder Structure
+
+    - 01-arrays/
+    └── sliding-window-practice/
+        ├── 01-643-max-avg-subarray-i.js
+        ├── 02-209-min-size-subarray-sum.js
+        ├── 03-930-binary-subarrays-with-sum.js
+        ├── 04-3-longest-substring-without-repeat.js
+        ├── 05-560-subarray-sum-equals-k.js
+        └── 06-239-sliding-window-maximum.js
+
 ### Concept
 
 Use two pointers that expand/shrink a window across the array, tracking state (like sum, count, or unique elements). Ideal for subarray or substring problems.
+
+- **The Key Idea (Sliding Window)**
+Instead of calculating the sum and average from scratch every time you move the window (which is slow), we use a sliding window to:
+
+  1. Add the number that’s entering the window. 
+
+  2. Subtract the number that’s leaving the window.
+
+  3. Keep track of the max average we’ve seen.
 
 ### Common Pattern
 
@@ -25,17 +45,6 @@ for (let right = 0; right < arr.length; right++) {
 
 ```
 
-
-### Problem: Longest Substring Without Repeating Characters
-- [Link](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-
-
-- Code:
-```js
-// Code
-
-
-```
 
 
 ### Easy Sliding Window Practice Problems:
@@ -67,3 +76,5 @@ Start with problems where:
 
 - You're given a **fixed window size `k`** → easier to implement a static sliding window.
 - All numbers are **positive** → shrinking the window becomes more predictable and intuitive.
+
+## Two Pointers
