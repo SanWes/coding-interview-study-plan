@@ -9,10 +9,10 @@ This file contains hands-on practice and explanations for key array problem-solv
 - Folder Structure
 
     - 01-arrays/
-    └── sliding-window-practice/
+    └── practice-problems/
         ├── 01-643-max-avg-subarray-i.js
-        ├── 02-209-min-size-subarray-sum.js
-        ├── 03-930-binary-subarrays-with-sum.js
+        ├── 03-209-min-size-subarray-sum.js
+        ├── 04-930-binary-subarrays-with-sum.js
         ├── 04-3-longest-substring-without-repeat.js
         ├── 05-560-subarray-sum-equals-k.js
         └── 06-239-sliding-window-maximum.js

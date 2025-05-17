@@ -33,8 +33,8 @@ An **array** is a data structure that holds a fixed-size sequence of elements of
 
 ## Recommended Resources
 
-1. [Array Cheat Sheet](resources/Array_CheatSheet.pdf)
-2. [YouTube: Arrays Explained](link-to-video)
+1. [Array Cheat Sheet](/resources/arrays-cheatsheet.md)
+
 
 ## Practice Problems
 
@@ -66,7 +66,9 @@ An **array** is a data structure that holds a fixed-size sequence of elements of
 
 - Adding and removing elements from the middle of an array is slow due to the remaining elements needing to be shifted to keep indexing system.
    - One exception of this is if insert or remove at end of the array
+
 - Certain languages when there is a fixed array size, its size cannot change after alteration. Meaning a new array needs to be made and remaining elements copied over. 
+
    - Making a new array and tranferring remaining elements over takes O(n) time. 
 
 ### Initializing Arrays in Several languages
@@ -202,6 +204,8 @@ int[] numbers = {1, 2, 3, 4};
 
 ### Techniques
 
+- Refer to techniques document (arrays-techniques.md) for deep dive on each pattern 
+
 - Arrays and Strings are both sequences, so most problem-solving techniques work for both.
 
 #### 1. Sliding Window 
@@ -232,4 +236,170 @@ int[] numbers = {1, 2, 3, 4};
 
 #### 3. Traversing from the right 
 
-- 
+- Sometimes you can traverse the array starting from the right instead of the conventional approach of from the left. 
+- Examples: [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/description/), [Number of Visible People in a Queue](https://leetcode.com/problems/number-of-visible-people-in-a-queue/description/)
+
+
+#### 4. Sorting the Array
+
+When approaching array problems, consider whether **sorting** can simplify the solution or enable more optimized approaches.
+
+---
+
+##### 🔍 Questions to Ask:
+- **Is the array already sorted or partially sorted?**  
+  → You might be able to apply **Binary Search** or **Two Pointers** for better than O(n) performance.
+
+- **Can you sort the array to make the problem easier?**  
+  → Sorting first (O(n log n)) often reveals structure that simplifies logic.  
+  ⚠️ Only sort if **preserving original order is not required**.
+
+---
+
+##### 🚫 When *Not* to Sort:
+- If the problem depends on the **original relative order** of elements.  
+  Examples:
+  - “Next Greater Element”
+  - Problems involving **indices**, **timestamps**, or **in-place requirements**
+
+---
+
+##### ⚙️ Common Use Cases:
+- [Merging intervals](https://leetcode.com/problems/merge-intervals/description/)
+- [Minimizing/removing overlaps](https://leetcode.com/problems/non-overlapping-intervals/description/)
+- Insert Interval
+- Two Sum (Sorted Input)
+- 3Sum
+- Meeting Rooms I & II
+
+#### 5. Precomputation
+
+In problems that involve **repeated operations** over subarrays — such as summing or multiplying elements — **precomputing** values can dramatically reduce time complexity.
+
+---
+
+###### 🔍 When to Consider Precomputation:
+- Subarray sums, products, or counts are **queried multiple times**
+- You’re trying to move from **O(n²)** brute-force to **O(n)** or **O(1)** queries
+
+---
+
+###### ⚙️ Common Patterns:
+- **Prefix Sum / Prefix Product**
+  - Precompute cumulative sums or products from the beginning of the array
+  - Allows **O(1)** range queries: `sum(i, j) = prefix[j] - prefix[i-1]`
+
+- **Suffix Sum / Product**
+  - Useful when processing from the **end** or combining **left and right** passes
+
+- **Hash Maps with Prefix Sums**
+  - Used when looking for **number of subarrays** that match a target (e.g. `sum == k`)
+  - Stores cumulative sums as keys and their counts as values
+
+---
+
+###### ✅ Example Problems:
+- **Product of Array Except Self**  
+  → Use prefix & suffix products to avoid using division
+
+- **Minimum Size Subarray Sum**  
+  → Optimized with prefix sums or sliding window
+
+- **560. Subarray Sum Equals K**  
+  → Use prefix sum + hash map for O(n) solution
+
+- **238. Product of Array Except Self**  
+  → Classic two-pass prefix/suffix product strategy
+
+---
+
+###### 🚫 When *Not* to Use It:
+- If subarray operations are rare or can be done inline efficiently
+- When the problem’s constraints make storing prefix arrays or maps infeasible due to space
+
+---
+
+###### 💡 Pro Tip:
+If you're calculating the **same sum/product multiple times**, stop and think:
+**Can I precompute and reuse it?**
+This can often unlock the optimal solution.
+
+#### 6. Index as a Hash Key
+
+In space-constrained problems (often requiring **O(1) extra space**), the array itself can sometimes be repurposed as a **hash map or set** — especially when values are **within a known range** (e.g. 1 to N).
+
+---
+
+##### 🔍 When to Consider:
+- The array contains **only positive integers from 1 to N**
+- You're asked to achieve **constant space (excluding output)**
+
+---
+
+##### ⚙️ Common Technique:
+- **Value-as-Index Mapping**:
+  - Use each number `val` to **mark its corresponding index** `val - 1`
+  - Typically by **negating** the number at that index
+  - Helps track whether a number exists without extra space
+
+---
+
+##### ✅ Example Problems:
+- **41. First Missing Positive**
+  → Rearranges and marks indices to find the smallest missing positive
+
+- **73. Set Matrix Zeroes**
+  → Uses first row/column as a space-efficient flag system
+
+- **Daily Temperatures**
+  → Uses a monotonic stack, but similar constraints apply regarding space usage
+
+---
+
+##### ⚠️ Be Careful:
+- Only works if you **control the value range**
+- Mutating the array is allowed in the problem constraints
+
+---
+
+##### 💡 Pro Tip:
+If the array values are within a **bounded range**, ask yourself:
+**“Can I use the array’s own indices to encode extra info?”**
+This trick can save both time and space.
+
+#### 7.  Traversing the Array Multiple Times
+
+Don't be afraid to **traverse the array more than once**. Just because an optimal solution must be **O(n)** doesn't mean it must happen in a single pass.
+
+---
+
+##### 🔍 When to Consider:
+- The problem requires combining information from **different directions**
+- You need to perform a **forward and backward pass**
+- A **first pass collects data**, and a **second pass uses it**
+
+---
+
+##### ⚙️ Patterns:
+- **Two-Pass Solutions**:
+  - One pass to **build context or preprocess**, another to **apply logic**
+- **Left-to-Right + Right-to-Left**:
+  - Especially useful in problems involving **spans**, **peaks**, or **products**
+
+---
+
+##### ✅ Example Problems:
+- **238. Product of Array Except Self**
+  → One forward and one backward pass
+
+- **42. Trapping Rain Water**
+  → Two arrays for left and right max values
+
+- **84. Largest Rectangle in Histogram**
+  → One scan for previous smaller, one for next smaller
+
+---
+
+##### 💡 Pro Tip:
+As long as you're not using nested loops, **multiple O(n) passes still count as linear time**.  
+Sometimes clarity and correctness **require more than one traversal** — and that’s perfectly acceptable.
